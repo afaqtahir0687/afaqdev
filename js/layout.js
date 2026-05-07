@@ -3,6 +3,8 @@
  * This version works even when opening files locally (file://)
  */
 
+const isMobile = window.innerWidth < 992;
+
 const layouts = {
     header: `
         <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 sticky-top shadow-sm">
@@ -16,10 +18,10 @@ const layouts = {
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
-                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="resume.html">Resume</a></li>
-                        <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
-                        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="${isMobile ? '#home' : 'index.html'}">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="${isMobile ? '#resume' : 'resume.html'}">Resume</a></li>
+                        <li class="nav-item"><a class="nav-link" href="${isMobile ? '#projects' : 'projects.html'}">Projects</a></li>
+                        <li class="nav-item"><a class="nav-link" href="${isMobile ? '#contact' : 'contact.html'}">Contact</a></li>
                     </ul>
                 </div>
             </div>
@@ -40,7 +42,6 @@ const layouts = {
 
 function renderLayouts() {
     const elements = document.querySelectorAll('[data-layout]');
-    
     elements.forEach(el => {
         const type = el.getAttribute('data-layout');
         if (layouts[type]) {
@@ -53,22 +54,28 @@ function renderLayouts() {
 }
 
 function setActiveLink(container) {
-    // Get current filename (e.g., index.html)
-    const path = window.location.pathname;
-    let page = path.split("/").pop();
-    if (page === "" || !page) page = "index.html";
-
-    const links = container.querySelectorAll('.nav-link');
-    links.forEach(link => {
-        const href = link.getAttribute('href');
-        if (href === page) {
-            link.classList.add('active', 'text-primary', 'border-bottom', 'border-primary');
-        } else {
-            link.classList.remove('active', 'text-primary', 'border-bottom', 'border-primary');
-        }
-    });
+    const navLinks = container.querySelectorAll('.nav-link');
+    
+    if (isMobile) {
+        const sections = document.querySelectorAll('header[id], section[id]');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    navLinks.forEach(link => {
+                        link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+                    });
+                }
+            });
+        }, { threshold: 0.5 });
+        sections.forEach(s => observer.observe(s));
+    } else {
+        const path = window.location.pathname.split("/").pop() || "index.html";
+        navLinks.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === path);
+        });
+    }
 }
 
-// Run immediately and also on DOMContentLoaded to be safe
 renderLayouts();
 document.addEventListener('DOMContentLoaded', renderLayouts);
