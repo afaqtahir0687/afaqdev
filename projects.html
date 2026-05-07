@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Muhammad Afaq Tahir - Featured Projects | Laravel Web Developer" />
+    <meta name="keywords" content="Laravel Projects, PHP Projects, Portfolio, Afaq Tahir" />
+    <meta name="author" content="Muhammad Afaq Tahir" />
+    <title>Projects | Muhammad Afaq Tahir</title>
+
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
+    <script src="js/layout.js" defer></script>
+
+    <style>
+        .navbar-nav .nav-link {
+            transition: color 0.3s ease, border-color 0.3s ease;
+            padding-bottom: 5px;
+            margin-left: 15px;
+            border-bottom: 2px solid transparent;
+        }
+        .navbar-nav .nav-link:hover { color: #1e30f3 !important; }
+
+        .project-card { transition: transform 0.3s ease; }
+        .project-card:hover { transform: scale(1.02); }
+
+        .project-img-container {
+            height: 400px;
+            overflow: hidden;
+        }
+
+        .border-primary-soft { border-color: rgba(30, 48, 243, 0.2) !important; }
+
+        .badge {
+            font-weight: 500;
+            padding: 0.5em 1em;
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: white;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            text-decoration: none;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            background-color: #128c7e;
+            color: white;
+        }
+        .back-to-top {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            background-color: #1e30f3;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            cursor: pointer;
+            transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+        }
+        .back-to-top.show { display: flex; }
+        .back-to-top:hover {
+            transform: scale(1.1);
+            background-color: #e21e80;
+        }
+    </style>
+</head>
+
+<body class="d-flex flex-column h-100">
+    <main class="flex-shrink-0">
+
+        <!-- Navbar Header (Loaded dynamically) -->
+        <div data-layout="header"></div>
+
+        <!-- Projects Section -->
+        <section class="py-5 reveal">
+            <div class="container px-5 mb-5">
+                <div class="text-center mb-5">
+                    <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">Featured Projects</span></h1>
+                    <p class="lead text-muted mt-3">A selection of my recent work in web development and system design.</p>
+                </div>
+                <div class="row gx-5 justify-content-center">
+                    <div class="col-lg-11 col-xl-10">
+
+                        <!-- Project 1: RightFreelancer -->
+                        <div class="card overflow-hidden shadow-lg rounded-4 border-0 mb-5 project-card reveal">
+                            <div class="card-body p-0">
+                                <div class="row g-0 align-items-center">
+                                    <div class="col-md-7 p-5">
+                                        <h2 class="fw-bolder mb-1">RightFreelancer</h2>
+                                        <div class="text-primary fw-bold mb-3">Freelance Marketplace Platform</div>
+                                        <p class="text-muted">A full-featured freelance marketplace platform connecting clients with skilled freelancers. Includes user authentication, bidding system, secure messaging, and payment integration.</p>
+                                        <div class="d-flex flex-wrap gap-2 mb-4">
+                                            <span class="badge bg-light text-primary border border-primary-soft">Laravel</span>
+                                            <span class="badge bg-light text-primary border border-primary-soft">MySQL</span>
+                                            <span class="badge bg-light text-primary border border-primary-soft">Ajax</span>
+                                            <span class="badge bg-light text-primary border border-primary-soft">jQuery</span>
+                                            <span class="badge bg-light text-primary border border-primary-soft">Bootstrap</span>
+                                        </div>
+                                        <div class="d-flex gap-3">
+                                            <a href="https://rightfreelancer.com/" target="_blank" class="btn btn-primary btn-sm px-4 rounded-pill">Live Demo</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="project-img-container">
+                                            <img class="img-fluid h-100 w-100 object-fit-cover" src="assets/projects/rightfreelancer.png" alt="RightFreelancer" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project 2: FancyMart -->
+                        <div class="card overflow-hidden shadow-lg rounded-4 border-0 mb-5 project-card reveal">
+                            <div class="card-body p-0">
+                                <div class="row g-0 align-items-center">
+                                    <div class="col-md-7 p-5">
+                                        <h2 class="fw-bolder mb-1">FancyMart</h2>
+                                        <div class="text-primary fw-bold mb-3">Premium E-commerce Platform</div>
+                                        <p class="text-muted">A comprehensive e-commerce solution featuring online ordering, product selling, and strategic purchasing modules. Designed for a seamless and secure shopping experience.</p>
+                                        <div class="d-flex flex-wrap gap-2 mb-4">
+                                            <span class="badge bg-light text-primary border border-primary-soft">Laravel</span>
+                                            <span class="badge bg-light text-primary border border-primary-soft">MySQL</span>
+                                            <span class="badge bg-light text-primary border border-primary-soft">Bootstrap</span>
+                                            <span class="badge bg-light text-primary border border-primary-soft">Ajax</span>
+                                        </div>
+                                        <div class="d-flex gap-3">
+                                            <a href="https://fancymart.pk/" target="_blank" class="btn btn-primary btn-sm px-4 rounded-pill">Live Demo</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="project-img-container">
+                                            <img class="img-fluid h-100 w-100 object-fit-cover" src="assets/projects/fancymart.png" alt="FancyMart" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project 3: YSEOTools -->
+                        <div class="card overflow-hidden shadow-lg rounded-4 border-0 mb-5 project-card reveal">
+                            <div class="card-body p-0">
+                                <div class="row g-0 align-items-center">
+                                    <div class="col-md-7 p-5">
+                                        <h2 class="fw-bolder mb-1">YSEOTools</h2>
+                                        <div class="text-primary fw-bold mb-3">SEO Tools Web Application</div>
+                                        <p class="text-muted">A comprehensive suite of SEO tools including plagiarism checker, backlink analyzer, and keyword tracker to improve website performance.</p>
+                                        <div class="d-flex flex-wrap gap-2 mb-4">
+                                            <span class="badge bg-light text-primary border border-primary-soft">Laravel</span>
+                                            <span class="badge bg-light text-primary border border-primary-soft">PHP</span>
+                                            <span class="badge bg-light text-primary border border-primary-soft">Ajax</span>
+                                            <span class="badge bg-light text-primary border border-primary-soft">Bootstrap</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="project-img-container">
+                                            <img class="img-fluid h-100 w-100 object-fit-cover" src="assets/projects/yseotools.png" alt="YSEOTools" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project 4: Bhatha Management -->
+                        <div class="card overflow-hidden shadow-lg rounded-4 border-0 mb-5 project-card reveal">
+                            <div class="card-body p-0">
+                                <div class="row g-0 align-items-center">
+                                    <div class="col-md-7 p-5">
+                                        <h2 class="fw-bolder mb-1">Bhatha Management</h2>
+                                        <div class="text-primary fw-bold mb-3">Industrial Operations System</div>
+                                        <p class="text-muted">A specialized management system for brick kiln operations, tracking production, sales, and worker management with detailed reporting.</p>
+                                        <div class="d-flex flex-wrap gap-2 mb-4">
+                                            <span class="badge bg-light text-primary border border-primary-soft">Laravel</span>
+                                            <span class="badge bg-light text-primary border border-primary-soft">SQL</span>
+                                            <span class="badge bg-light text-primary border border-primary-soft">jQuery</span>
+                                            <span class="badge bg-light text-primary border border-primary-soft">Bootstrap</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="project-img-container">
+                                            <img class="img-fluid h-100 w-100 object-fit-cover" src="assets/projects/bhatha.png" alt="Bhatha Management" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project 5: Tarteel e Quran -->
+                        <div class="card overflow-hidden shadow-lg rounded-4 border-0 mb-5 project-card reveal">
+                            <div class="card-body p-0">
+                                <div class="row g-0 align-items-center">
+                                    <div class="col-md-7 p-5">
+                                        <h2 class="fw-bolder mb-1">Tarteel e Quran</h2>
+                                        <div class="text-primary fw-bold mb-3">Online School Management</div>
+                                        <p class="text-muted">A management platform for online academic schools, handling student enrollments, teacher assignments, and automated invoicing.</p>
+                                        <div class="d-flex flex-wrap gap-2 mb-4">
+                                            <span class="badge bg-light text-primary border border-primary-soft">Laravel</span>
+                                            <span class="badge bg-light text-primary border border-primary-soft">MySQL</span>
+                                            <span class="badge bg-light text-primary border border-primary-soft">Ajax</span>
+                                            <span class="badge bg-light text-primary border border-primary-soft">Bootstrap</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="project-img-container">
+                                            <img class="img-fluid h-100 w-100 object-fit-cover" src="assets/projects/tarteel.png" alt="Tarteel e Quran" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project 6: Digital CRM -->
+                        <div class="card overflow-hidden shadow-lg rounded-4 border-0 mb-5 project-card reveal">
+                            <div class="card-body p-0">
+                                <div class="row g-0 align-items-center">
+                                    <div class="col-md-7 p-5">
+                                        <h2 class="fw-bolder mb-1">Digital CRM</h2>
+                                        <div class="text-primary fw-bold mb-3">Customer Relationship Management</div>
+                                        <p class="text-muted">A comprehensive CRM system designed to manage leads, customer interactions, and business workflows efficiently. It streamlines sales processes and enhances customer relationship management with real-time data and analytics.</p>
+                                        <div class="d-flex flex-wrap gap-2 mb-4">
+                                            <span class="badge bg-light text-primary border border-primary-soft">Laravel</span>
+                                            <span class="badge bg-light text-primary border border-primary-soft">MySQL</span>
+                                            <span class="badge bg-light text-primary border border-primary-soft">jQuery</span>
+                                            <span class="badge bg-light text-primary border border-primary-soft">Bootstrap</span>
+                                        </div>
+                                        <div class="d-flex gap-3">
+                                            <a href="https://crm.fais.digital/" target="_blank" class="btn btn-primary btn-sm px-4 rounded-pill">Live Demo</a>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="project-img-container">
+                                            <img class="img-fluid h-100 w-100 object-fit-cover" src="assets/projects/crm.png" alt="Digital CRM" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="py-5 bg-gradient-primary-to-secondary text-white">
+            <div class="container px-5 my-5">
+                <div class="text-center">
+                    <h2 class="display-4 fw-bolder mb-4">Let's build something together</h2>
+                    <a class="btn btn-outline-light btn-lg px-5 py-3 fs-6 fw-bolder" href="contact.html">Contact me</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer (Loaded dynamically) -->
+    <div data-layout="footer"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/scripts.js"></script>
+
+    <script>
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                if (elementTop < windowHeight - 150) reveals[i].classList.add("active");
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal();
+
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) backToTop.classList.add('show');
+            else backToTop.classList.remove('show');
+        });
+        backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    </script>
+
+    <a href="https://wa.me/923017730687?text=Hello%20Afaq%20Tahir" target="_blank" class="whatsapp-float" title="Chat on WhatsApp">
+        <i class="bi bi-whatsapp"></i>
+    </a>
+    <button id="backToTop" class="back-to-top" title="Back to Top">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+
+</body>
+</html>
