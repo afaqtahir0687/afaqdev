@@ -41,13 +41,13 @@
             transform: translateY(0);
         }
 
-        .hover-scale {
-            transition: transform 0.3s ease;
-            display: inline-block;
-        }
-
         .hover-scale:hover {
             transform: scale(1.2);
+        }
+
+        /* Ensure sections have enough space for sticky nav */
+        .scroll-mt {
+            scroll-margin-top: 100px;
         }
 
         .card {
@@ -137,14 +137,14 @@
             background: linear-gradient(315deg, #1e30f3 0%, #e21e80 100%) !important;
         }
 
-        /* Mobile Single Page logic: Hide sections on Desktop index */
-        @media (min-width: 992px) {
-
-            #resume,
-            #projects,
-            #contact {
-                display: none;
-            }
+        /* Sticky Header for single page navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1050;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
         }
     </style>
 </head>
@@ -161,10 +161,10 @@
                     <div class="col-xxl-5">
                         <div class="text-center text-xxl-start">
                             <div class="badge bg-gradient-primary-to-secondary text-white mb-4">
-                                <div class="text-uppercase">PHP Laravel Developer at MeemSoft</div>
+                                <div class="text-uppercase">Sr. Laravel Developer & AI Prompt Engineer</div>
                             </div>
-                            <div class="fs-3 fw-light text-muted">I am a Laravel Developer with 2 years of experience
-                            </div>
+                            <div class="fs-3 fw-light text-muted">Specializing in Scalable Backends, Advanced ORM & AI
+                                Solutions</div>
                             <h1 class="display-3 fw-bolder mb-5"><span class="text-gradient d-inline">Muhammad Afaq
                                     Tahir</span></h1>
                             <div class="mb-4">
@@ -198,48 +198,60 @@
             <div class="container px-5">
                 <div class="text-center mb-5">
                     <h2 class="display-5 fw-bolder mb-5"><span class="text-gradient d-inline">What I Do</span></h2>
-                    <div class="row g-4 justify-content-center">
-                        <div class="col-md-4">
+                    <div class="row g-4 justify-content-center reveal">
+                        <div class="col-md-6 col-lg-3">
                             <div class="card border-0 shadow rounded-4 h-100 p-4">
                                 <div
                                     class="feature bg-primary bg-gradient-primary-to-secondary text-white rounded-3 mb-4">
                                     <i class="bi bi-code-square"></i>
                                 </div>
-                                <h4 class="fw-bolder">Web Development</h4>
-                                <p class="text-muted small">Specializing in Laravel, I build scalable, high-performance
-                                    web applications with clean code.</p>
+                                <h4 class="fw-bolder">Web Dev</h4>
+                                <p class="text-muted small">Building scalable, high-performance web applications with
+                                    clean Laravel code.</p>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6 col-lg-3">
                             <div class="card border-0 shadow rounded-4 h-100 p-4">
                                 <div
                                     class="feature bg-primary bg-gradient-primary-to-secondary text-white rounded-3 mb-4">
                                     <i class="bi bi-cpu"></i>
                                 </div>
-                                <h4 class="fw-bolder">API Design</h4>
-                                <p class="text-muted small">Designing robust RESTful APIs that power modern mobile and
-                                    web experiences.</p>
+                                <h4 class="fw-bolder">API & ORM</h4>
+                                <p class="text-muted small">Expertise in Eloquent ORM and designing robust RESTful APIs
+                                    for modern apps.</p>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6 col-lg-3">
                             <div class="card border-0 shadow rounded-4 h-100 p-4">
                                 <div
                                     class="feature bg-primary bg-gradient-primary-to-secondary text-white rounded-3 mb-4">
                                     <i class="bi bi-database"></i>
                                 </div>
-                                <h4 class="fw-bolder">Database Management</h4>
-                                <p class="text-muted small">Expertise in MySQL and database architectural design to
-                                    ensure data integrity.</p>
+                                <h4 class="fw-bolder">Database</h4>
+                                <p class="text-muted small">Advanced database architecture using MySQL with focus on
+                                    optimization.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <div class="card border-0 shadow rounded-4 h-100 p-4">
+                                <div
+                                    class="feature bg-primary bg-gradient-primary-to-secondary text-white rounded-3 mb-4">
+                                    <i class="bi bi-lightning-charge"></i>
+                                </div>
+                                <h4 class="fw-bolder">AI & Logic</h4>
+                                <p class="text-muted small">Expert AI Prompt Engineer and problem solver for complex
+                                    challenges.</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="text-center mt-5">
+                <div class="text-center mt-5 reveal">
                     <h2 class="display-5 fw-bolder"><span class="text-gradient d-inline">About Me</span></h2>
-                    <p class="lead fw-light mb-4">I am a passionate and results-driven <strong>Sr. PHP/Laravel
-                            Developer</strong> with over 2 years of professional experience <br> building dynamic,
-                        secure,
-                        and scalable web applications.</p>
+                    <p class="lead fw-light mb-4">I am a passionate and results-driven <strong>PHP/Laravel Developer
+                        </strong> with over 2 years of professional experience. I specialize in
+                        building complex back-end systems, handling sophisticated database architectures with Eloquent
+                        ORM, and applying advanced problem-solving techniques to deliver high-performance digital
+                        solutions.</p>
 
                     <p class="text-muted">My technical expertise spans the full development lifecycle, from designing
                         robust back-end architectures to crafting responsive, <br> user-friendly interfaces. I am also
@@ -258,21 +270,21 @@
         </section>
 
         <!-- Resume Section (Experience, Education, Skills) -->
-        <section id="resume" class="reveal">
+        <section id="resume">
             <div class="container px-5">
-                <div class="text-center mb-5">
+                <div class="text-center mb-5 scroll-mt" id="resume">
                     <h2 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">Resume</span></h2>
                 </div>
                 <div class="row gx-5 justify-content-center">
                     <div class="col-lg-11 col-xl-9">
 
                         <!-- Experience -->
-                        <div class="d-flex align-items-center justify-content-between mb-4">
+                        <div id="experience" class="d-flex align-items-center justify-content-between mb-4 scroll-mt">
                             <h3 class="text-primary fw-bolder mb-0">Experience</h3>
                             <button class="btn btn-primary px-4 py-3" onclick="window.print()"><i
                                     class="bi bi-download me-2"></i>Download Resume</button>
                         </div>
-                        <div class="card shadow border-0 rounded-4 mb-5">
+                        <div class="card shadow border-0 rounded-4 mb-5 reveal">
                             <div class="card-body p-5">
                                 <div class="row align-items-center gx-5">
                                     <div class="col-lg-4 text-center text-lg-start mb-4 mb-lg-0">
@@ -290,9 +302,47 @@
                             </div>
                         </div>
 
+                        <!-- Experience Card 2 -->
+                        <div class="card shadow border-0 rounded-4 mb-5 reveal">
+                            <div class="card-body p-5">
+                                <div class="row align-items-center gx-5">
+                                    <div class="col-lg-4 text-center text-lg-start mb-4 mb-lg-0">
+                                        <div class="bg-light p-4 rounded-4">
+                                            <div class="text-primary fw-bolder mb-2">2023 - 2025</div>
+                                            <div class="small fw-bolder">PHP/Laravel Developer</div>
+                                            <div class="small text-muted">Innovabe Solutions</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <div>Built and maintained dynamic, data-driven Laravel applications with focus
+                                            on RESTful APIs and clean MVC architecture.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Experience Card 3 -->
+                        <div class="card shadow border-0 rounded-4 mb-5 reveal">
+                            <div class="card-body p-5">
+                                <div class="row align-items-center gx-5">
+                                    <div class="col-lg-4 text-center text-lg-start mb-4 mb-lg-0">
+                                        <div class="bg-light p-4 rounded-4">
+                                            <div class="text-primary fw-bolder mb-2">2023</div>
+                                            <div class="small fw-bolder">Internship Laravel</div>
+                                            <div class="small text-muted">Biotech Packages</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <div>Foundational experience in PHP/Laravel development, version control with
+                                            Git, and internal tool creation.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <!-- Education -->
-                        <h3 class="text-secondary fw-bolder mb-4 mt-5">Education</h3>
-                        <div class="card shadow border-0 rounded-4 mb-5">
+                        <h3 id="education" class="text-secondary fw-bolder mb-4 mt-5 scroll-mt">Education</h3>
+                        <div class="card shadow border-0 rounded-4 mb-5 reveal">
                             <div class="card-body p-5">
                                 <div class="row align-items-center gx-5">
                                     <div class="col-lg-4 text-center text-lg-start mb-4 mb-lg-0">
@@ -310,28 +360,123 @@
                             </div>
                         </div>
 
+                        <!-- Education Card 2 -->
+                        <div class="card shadow border-0 rounded-4 mb-5 reveal">
+                            <div class="card-body p-5">
+                                <div class="row align-items-center gx-5">
+                                    <div class="col-lg-4 text-center text-lg-start mb-4 mb-lg-0">
+                                        <div class="bg-light p-4 rounded-4">
+                                            <div class="text-secondary fw-bolder mb-2">2019</div>
+                                            <div class="small fw-bolder">Govt Degree College</div>
+                                            <div class="small text-muted">Intermediate in Computer Science (ICS)</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <div>Focused on core programming concepts, database fundamentals, and logic
+                                            building.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Education Card 3 -->
+                        <div class="card shadow border-0 rounded-4 mb-5 reveal">
+                            <div class="card-body p-5">
+                                <div class="row align-items-center gx-5">
+                                    <div class="col-lg-4 text-center text-lg-start mb-4 mb-lg-0">
+                                        <div class="bg-light p-4 rounded-4">
+                                            <div class="text-secondary fw-bolder mb-2">2016</div>
+                                            <div class="small fw-bolder">335W/B Govt High School</div>
+                                            <div class="small text-muted">Matriculation (Science)</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <div>Solid foundation in science and mathematics with 75% graduation grade.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <!-- Skills -->
                         <h3 class="text-primary fw-bolder mb-4 mt-5">Professional Skills</h3>
-                        <div class="card shadow border-0 rounded-4 mb-5">
+                        <div class="card shadow border-0 rounded-4 mb-5 reveal">
                             <div class="card-body p-5">
-                                <div class="row row-cols-1 row-cols-md-3 g-4">
+                                <div class="row row-cols-1 row-cols-md-3 row-cols-lg-5 g-4">
                                     <div class="col">
-                                        <div class="bg-light rounded-4 p-3 text-center">Laravel & PHP</div>
+                                        <div
+                                            class="bg-light rounded-4 p-3 text-center h-100 d-flex align-items-center justify-content-center">
+                                            Backend Development</div>
                                     </div>
                                     <div class="col">
-                                        <div class="bg-light rounded-4 p-3 text-center">MySQL</div>
+                                        <div
+                                            class="bg-light rounded-4 p-3 text-center h-100 d-flex align-items-center justify-content-center">
+                                            RESTful API Design</div>
                                     </div>
                                     <div class="col">
-                                        <div class="bg-light rounded-4 p-3 text-center">RESTful APIs</div>
+                                        <div
+                                            class="bg-light rounded-4 p-3 text-center h-100 d-flex align-items-center justify-content-center">
+                                            Database Management</div>
                                     </div>
                                     <div class="col">
-                                        <div class="bg-light rounded-4 p-3 text-center">JavaScript & jQuery</div>
+                                        <div
+                                            class="bg-light rounded-4 p-3 text-center h-100 d-flex align-items-center justify-content-center">
+                                            Frontend Development</div>
                                     </div>
                                     <div class="col">
-                                        <div class="bg-light rounded-4 p-3 text-center">Git & GitHub</div>
+                                        <div
+                                            class="bg-light rounded-4 p-3 text-center h-100 d-flex align-items-center justify-content-center">
+                                            Object-Oriented Programming</div>
                                     </div>
                                     <div class="col">
-                                        <div class="bg-light rounded-4 p-3 text-center">Bootstrap & CSS</div>
+                                        <div
+                                            class="bg-light rounded-4 p-3 text-center h-100 d-flex align-items-center justify-content-center">
+                                            Problem Solving</div>
+                                    </div>
+                                    <div class="col">
+                                        <div
+                                            class="bg-light rounded-4 p-3 text-center h-100 d-flex align-items-center justify-content-center">
+                                            PHP & Laravel</div>
+                                    </div>
+                                    <div class="col">
+                                        <div
+                                            class="bg-light rounded-4 p-3 text-center h-100 d-flex align-items-center justify-content-center">
+                                            MySQL</div>
+                                    </div>
+                                    <div class="col">
+                                        <div
+                                            class="bg-light rounded-4 p-3 text-center h-100 d-flex align-items-center justify-content-center">
+                                            Git & GitHub</div>
+                                    </div>
+                                    <div class="col">
+                                        <div
+                                            class="bg-light rounded-4 p-3 text-center h-100 d-flex align-items-center justify-content-center">
+                                            HTML, CSS & Bootstrap</div>
+                                    </div>
+                                    <div class="col">
+                                        <div
+                                            class="bg-light rounded-4 p-3 text-center h-100 d-flex align-items-center justify-content-center">
+                                            JavaScript, Ajax & jQuery</div>
+                                    </div>
+                                    <div class="col">
+                                        <div
+                                            class="bg-light rounded-4 p-3 text-center h-100 d-flex align-items-center justify-content-center">
+                                            Postman API Testing</div>
+                                    </div>
+                                    <div class="col">
+                                        <div
+                                            class="bg-light rounded-4 p-3 text-center h-100 d-flex align-items-center justify-content-center">
+                                            React Js (Beginner)</div>
+                                    </div>
+                                    <div class="col">
+                                        <div
+                                            class="bg-light rounded-4 p-3 text-center h-100 d-flex align-items-center justify-content-center">
+                                            Vue Js (Beginner)</div>
+                                    </div>
+                                    <div class="col">
+                                        <div
+                                            class="bg-light rounded-4 p-3 text-center h-100 d-flex align-items-center justify-content-center">
+                                            AI Prompt Engineering</div>
                                     </div>
                                 </div>
                             </div>
@@ -343,7 +488,7 @@
         </section>
 
         <!-- Projects Section -->
-        <section id="projects" class="bg-light reveal">
+        <section id="projects" class="bg-light">
             <div class="container px-5">
                 <div class="text-center mb-5">
                     <h2 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">Featured Projects</span>
@@ -352,7 +497,7 @@
                 <div class="row gx-5 justify-content-center">
                     <div class="col-lg-11 col-xl-10">
                         <!-- Project 1 -->
-                        <div class="card overflow-hidden shadow-lg rounded-4 border-0 mb-5 project-card">
+                        <div class="card overflow-hidden shadow-lg rounded-4 border-0 mb-5 project-card reveal">
                             <div class="card-body p-0">
                                 <div class="row g-0 align-items-center">
                                     <div class="col-md-7 p-5">
@@ -368,7 +513,7 @@
                             </div>
                         </div>
                         <!-- Project 2 -->
-                        <div class="card overflow-hidden shadow-lg rounded-4 border-0 mb-5 project-card">
+                        <div class="card overflow-hidden shadow-lg rounded-4 border-0 mb-5 project-card reveal">
                             <div class="card-body p-0">
                                 <div class="row g-0 align-items-center">
                                     <div class="col-md-7 p-5">
@@ -384,7 +529,55 @@
                             </div>
                         </div>
                         <!-- Project 3 -->
-                        <div class="card overflow-hidden shadow-lg rounded-4 border-0 mb-5 project-card">
+                        <div class="card overflow-hidden shadow-lg rounded-4 border-0 mb-5 project-card reveal">
+                            <div class="card-body p-0">
+                                <div class="row g-0 align-items-center">
+                                    <div class="col-md-7 p-5">
+                                        <h2 class="fw-bolder mb-1">YSEOTools</h2>
+                                        <p class="text-muted">A comprehensive suite of SEO tools including plagiarism
+                                            checker, backlink analyzer, and keyword tracker.</p>
+                                        <button class="btn btn-secondary btn-sm px-4 rounded-pill" disabled>Details
+                                            Coming Soon</button>
+                                    </div>
+                                    <div class="col-md-5"><img class="img-fluid h-100 w-100 object-fit-cover"
+                                            src="assets/projects/yseotools.png" /></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Project 4 -->
+                        <div class="card overflow-hidden shadow-lg rounded-4 border-0 mb-5 project-card reveal">
+                            <div class="card-body p-0">
+                                <div class="row g-0 align-items-center">
+                                    <div class="col-md-7 p-5">
+                                        <h2 class="fw-bolder mb-1">Bhatha Management</h2>
+                                        <p class="text-muted">A specialized management system for brick kiln operations,
+                                            tracking production, sales, and worker management.</p>
+                                        <button class="btn btn-secondary btn-sm px-4 rounded-pill" disabled>Details
+                                            Coming Soon</button>
+                                    </div>
+                                    <div class="col-md-5"><img class="img-fluid h-100 w-100 object-fit-cover"
+                                            src="assets/projects/bhatha.png" /></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Project 5 -->
+                        <div class="card overflow-hidden shadow-lg rounded-4 border-0 mb-5 project-card reveal">
+                            <div class="card-body p-0">
+                                <div class="row g-0 align-items-center">
+                                    <div class="col-md-7 p-5">
+                                        <h2 class="fw-bolder mb-1">Tarteel e Quran</h2>
+                                        <p class="text-muted">A management platform for online academic schools,
+                                            handling student enrollments and automated invoicing.</p>
+                                        <button class="btn btn-secondary btn-sm px-4 rounded-pill" disabled>Details
+                                            Coming Soon</button>
+                                    </div>
+                                    <div class="col-md-5"><img class="img-fluid h-100 w-100 object-fit-cover"
+                                            src="assets/projects/tarteel.png" /></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Project 6 -->
+                        <div class="card overflow-hidden shadow-lg rounded-4 border-0 mb-5 project-card reveal">
                             <div class="card-body p-0">
                                 <div class="row g-0 align-items-center">
                                     <div class="col-md-7 p-5">
@@ -405,9 +598,9 @@
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="reveal">
+        <section id="contact">
             <div class="container px-5">
-                <div class="bg-light rounded-4 py-5 px-4 px-md-5 shadow-sm">
+                <div class="bg-light rounded-4 py-5 px-4 px-md-5 shadow-sm reveal">
                     <div class="text-center mb-5">
                         <div class="feature bg-primary bg-gradient-primary-to-secondary text-white rounded-3 mb-3"><i
                                 class="bi bi-envelope"></i></div>
@@ -455,17 +648,16 @@
             }
         });
 
-        // Scroll Reveal Animation
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                if (elementTop < windowHeight - 100) reveals[i].classList.add("active");
-            }
-        }
-        window.addEventListener("scroll", reveal);
-        reveal();
+        // Professional Scroll Reveal with Intersection Observer
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("active");
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
 
         // Back to Top Button
         const backToTop = document.getElementById('backToTop');

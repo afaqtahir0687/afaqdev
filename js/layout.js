@@ -9,7 +9,7 @@ const layouts = {
     header: `
         <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 sticky-top shadow-sm">
             <div class="container px-5">
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="#home">
                     <span class="fw-bolder text-primary">Muhammad Afaq Tahir</span>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -18,10 +18,12 @@ const layouts = {
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
-                        <li class="nav-item"><a class="nav-link" href="${isMobile ? '#home' : 'index.html'}">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="${isMobile ? '#resume' : 'resume.html'}">Resume</a></li>
-                        <li class="nav-item"><a class="nav-link" href="${isMobile ? '#projects' : 'projects.html'}">Projects</a></li>
-                        <li class="nav-item"><a class="nav-link" href="${isMobile ? '#contact' : 'contact.html'}">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                     </ul>
                 </div>
             </div>
@@ -55,26 +57,31 @@ function renderLayouts() {
 
 function setActiveLink(container) {
     const navLinks = container.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('header[id], section[id], .scroll-mt[id]');
     
-    if (isMobile) {
-        const sections = document.querySelectorAll('header[id], section[id]');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const id = entry.target.getAttribute('id');
-                    navLinks.forEach(link => {
-                        link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
-                    });
-                }
-            });
-        }, { threshold: 0.5 });
-        sections.forEach(s => observer.observe(s));
-    } else {
-        const path = window.location.pathname.split("/").pop() || "index.html";
-        navLinks.forEach(link => {
-            link.classList.toggle('active', link.getAttribute('href') === path);
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                navLinks.forEach(link => {
+                    link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+                });
+            }
         });
-    }
+    }, { threshold: 0.3 }); // Lower threshold for better response on large sections
+    
+    sections.forEach(s => observer.observe(s));
+
+    // Handle clicks to close mobile menu
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            const navbarCollapse = document.getElementById('navbarSupportedContent');
+            if (navbarCollapse.classList.contains('show')) {
+                const bscollapse = new bootstrap.Collapse(navbarCollapse);
+                bscollapse.hide();
+            }
+        });
+    });
 }
 
 renderLayouts();
