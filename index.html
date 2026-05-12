@@ -157,12 +157,17 @@
             position: relative;
             padding-top: 2.5rem !important;
             padding-bottom: 1.5rem !important;
-            background: #f8f9fa;
+            background: #fff;
             border-radius: 1rem;
             margin-top: 25px;
             transition: all 0.3s ease;
             height: 100%;
-            border: 1px solid rgba(0, 0, 0, 0.03);
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+            border: 1px solid rgba(0,0,0,0.05);
+            border-left: 4px solid transparent !important;
+            background-clip: padding-box, border-box;
+            background-origin: padding-box, border-box;
+            background-image: linear-gradient(#fff, #fff), linear-gradient(180deg, #1e30f3 0%, #e21e80 100%);
         }
 
         .skill-box:hover {
@@ -184,6 +189,11 @@
             border-radius: 50%;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             font-size: 1.5rem;
+        }
+
+        /* Smooth Layout Transition */
+        .skill-box-wrapper {
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
     </style>
 </head>
@@ -467,7 +477,7 @@
                         <h3 class="text-primary fw-bolder mb-4 mt-5">Professional Skills</h3>
                         <div class="card shadow border-0 rounded-4 mb-5 reveal">
                             <div class="card-body p-5">
-                                <div class="row row-cols-2 row-cols-md-4 g-5 text-center">
+                                <div id="skills-grid" class="row row-cols-2 row-cols-md-4 g-5 text-center">
                                     <!-- PHP & Laravel -->
                                     <div class="col">
                                         <div class="skill-box">
@@ -895,6 +905,85 @@
     <a href="https://wa.me/923017730687" target="_blank" class="whatsapp-float"><i class="bi bi-whatsapp"></i></a>
     <button id="backToTop" class="back-to-top"><i class="bi bi-arrow-up"></i></button>
 
+    <script>
+        // Professional FLIP Animation Shuffle
+        function flipShuffle() {
+            const grid = document.getElementById('skills-grid');
+            if (!grid) return;
+
+            const skills = Array.from(grid.children);
+            
+            // 1. Record Start Positions
+            const firstPositions = skills.map(el => {
+                const rect = el.getBoundingClientRect();
+                return { top: rect.top, left: rect.left };
+            });
+
+            // 2. Shuffle DOM elements
+            for (let i = skills.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                grid.appendChild(skills[j]);
+            }
+
+            // 3. Record End Positions & Apply Invert
+            requestAnimationFrame(() => {
+                skills.forEach((el, i) => {
+                    const rect = el.getBoundingClientRect();
+                    const firstPos = firstPositions[skills.indexOf(el)]; // Get original pos of THIS element
+                    
+                    // Actually, easier to map by element reference
+                });
+
+                // Simplified FLIP logic for multi-element
+                const updatedSkills = Array.from(grid.children);
+                updatedSkills.forEach((el, index) => {
+                    const newRect = el.getBoundingClientRect();
+                    const oldPos = skills.find(s => s === el)._oldPos; // We'll store old pos on the element
+                });
+            });
+        }
+
+        // Optimized Shuffle with smooth sliding
+        function smoothShuffle() {
+            const grid = document.getElementById('skills-grid');
+            const items = Array.from(grid.children);
+            
+            // Save current positions
+            const positions = items.map(item => {
+                const rect = item.getBoundingClientRect();
+                return { dom: item, top: rect.top, left: rect.left };
+            });
+
+            // Reorder in DOM
+            for (let i = items.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                grid.appendChild(items[j]);
+            }
+
+            // Animate from old to new
+            items.forEach(item => {
+                const oldPos = positions.find(p => p.dom === item);
+                const newRect = item.getBoundingClientRect();
+                
+                const deltaX = oldPos.left - newRect.left;
+                const deltaY = oldPos.top - newRect.top;
+
+                // Move item back to old position instantly
+                item.style.transition = 'none';
+                item.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+                
+                // Trigger reflow
+                item.offsetHeight;
+
+                // Slide to new position
+                item.style.transition = 'transform 1s cubic-bezier(0.4, 0, 0.2, 1)';
+                item.style.transform = 'translate(0, 0)';
+            });
+        }
+
+        // Shuffle every 3 seconds
+        setInterval(smoothShuffle, 3000);
+    </script>
 </body>
 
 </html>
