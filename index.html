@@ -87,23 +87,35 @@
             position: fixed;
             bottom: 100px;
             right: 30px;
-            background-color: #1e30f3;
+            background: linear-gradient(135deg, #1e30f3 0%, #e21e80 100%);
             color: white;
             border: none;
             border-radius: 50%;
             width: 50px;
             height: 50px;
-            display: none;
+            display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
-            z-index: 1000;
+            font-size: 24px;
+            z-index: 9999;
             cursor: pointer;
-            transition: 0.3s;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
 
         .back-to-top.show {
-            display: flex;
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            color: white;
         }
 
         .project-card {
@@ -163,7 +175,7 @@
             transition: all 0.3s ease;
             height: 100%;
             box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-            border: 1px solid rgba(0,0,0,0.05);
+            border: 1px solid rgba(0, 0, 0, 0.05);
             border-left: 4px solid transparent !important;
             background-clip: padding-box, border-box;
             background-origin: padding-box, border-box;
@@ -199,9 +211,13 @@
 </head>
 
 <body class="d-flex flex-column h-100">
-    <main class="flex-shrink-0">
+    <!-- Floating Action Buttons -->
+    <a href="https://wa.me/923017730687" target="_blank" class="whatsapp-float"><i class="bi bi-whatsapp"></i></a>
+    <button id="backToTop" class="back-to-top"><i class="bi bi-arrow-up"></i></button>
 
+    <main class="flex-shrink-0">
         <div data-layout="header"></div>
+
 
         <!-- Home Section -->
         <header id="home" class="py-5 reveal">
@@ -893,17 +909,25 @@
 
         document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
 
-        // Back to Top Button
-        const backToTop = document.getElementById('backToTop');
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 400) backToTop.classList.add('show');
-            else backToTop.classList.remove('show');
+        // Back to Top Button Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const backToTop = document.getElementById('backToTop');
+            if (backToTop) {
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 300) {
+                        backToTop.classList.add('show');
+                    } else {
+                        backToTop.classList.remove('show');
+                    }
+                });
+                backToTop.addEventListener('click', () => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
         });
-        backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
     </script>
 
-    <a href="https://wa.me/923017730687" target="_blank" class="whatsapp-float"><i class="bi bi-whatsapp"></i></a>
-    <button id="backToTop" class="back-to-top"><i class="bi bi-arrow-up"></i></button>
+
 
     <script>
         // Professional FLIP Animation Shuffle
@@ -912,7 +936,7 @@
             if (!grid) return;
 
             const skills = Array.from(grid.children);
-            
+
             // 1. Record Start Positions
             const firstPositions = skills.map(el => {
                 const rect = el.getBoundingClientRect();
@@ -930,7 +954,7 @@
                 skills.forEach((el, i) => {
                     const rect = el.getBoundingClientRect();
                     const firstPos = firstPositions[skills.indexOf(el)]; // Get original pos of THIS element
-                    
+
                     // Actually, easier to map by element reference
                 });
 
@@ -947,7 +971,7 @@
         function smoothShuffle() {
             const grid = document.getElementById('skills-grid');
             const items = Array.from(grid.children);
-            
+
             // Save current positions
             const positions = items.map(item => {
                 const rect = item.getBoundingClientRect();
@@ -964,14 +988,14 @@
             items.forEach(item => {
                 const oldPos = positions.find(p => p.dom === item);
                 const newRect = item.getBoundingClientRect();
-                
+
                 const deltaX = oldPos.left - newRect.left;
                 const deltaY = oldPos.top - newRect.top;
 
                 // Move item back to old position instantly
                 item.style.transition = 'none';
                 item.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
-                
+
                 // Trigger reflow
                 item.offsetHeight;
 
@@ -982,7 +1006,7 @@
         }
 
         // Shuffle every 3 seconds
-        setInterval(smoothShuffle, 3000);
+        setInterval(smoothShuffle, 5000);
     </script>
 </body>
 

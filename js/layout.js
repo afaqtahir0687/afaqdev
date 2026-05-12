@@ -59,7 +59,7 @@ function renderLayouts() {
 function setActiveLink(container) {
     const navLinks = container.querySelectorAll('.nav-link');
     const sections = document.querySelectorAll('header[id], section[id], .scroll-mt[id]');
-    
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -70,7 +70,7 @@ function setActiveLink(container) {
             }
         });
     }, { threshold: 0.3 }); // Lower threshold for better response on large sections
-    
+
     sections.forEach(s => observer.observe(s));
 
     // Handle clicks to close mobile menu
