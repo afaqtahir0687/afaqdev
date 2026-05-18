@@ -813,7 +813,7 @@
                             </div>
                         </div>
                         <!-- Project 5 -->
-                        <div class="card overflow-hidden shadow-lg rounded-4 border-0 mb-5 project-card reveal">
+                        <div class="card overflow-hidden shadow-lg rounded-4 border-0 mb-5 project-card reveal extra-project d-none">
                             <div class="card-body p-0">
                                 <div class="row g-0 align-items-center">
                                     <div class="col-md-7 p-5">
@@ -829,7 +829,7 @@
                             </div>
                         </div>
                         <!-- Project 6 -->
-                        <div class="card overflow-hidden shadow-lg rounded-4 border-0 mb-5 project-card reveal">
+                        <div class="card overflow-hidden shadow-lg rounded-4 border-0 mb-5 project-card reveal extra-project d-none">
                             <div class="card-body p-0">
                                 <div class="row g-0 align-items-center">
                                     <div class="col-md-7 p-5">
@@ -843,6 +843,13 @@
                                             src="assets/projects/crm.png" /></div>
                                 </div>
                             </div>
+                        </div>
+
+                        <!-- View More Projects Button -->
+                        <div class="text-center mt-4 mb-5 reveal" id="show-more-container">
+                            <button id="show-more-btn" class="btn btn-primary btn-lg px-5 py-3 rounded-pill fw-bolder shadow-sm hover-scale" style="transition: all 0.3s ease;">
+                                <i class="bi bi-plus-circle me-2"></i>View All Projects
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -1005,6 +1012,45 @@
                 });
                 backToTop.addEventListener('click', () => {
                     window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+        });
+
+        // Show More / Show Less Projects Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const showMoreBtn = document.getElementById('show-more-btn');
+            const extraProjects = document.querySelectorAll('.extra-project');
+            
+            if (showMoreBtn && extraProjects.length > 0) {
+                showMoreBtn.addEventListener('click', () => {
+                    const isExpanded = showMoreBtn.getAttribute('aria-expanded') === 'true';
+                    
+                    if (isExpanded) {
+                        // Collapse
+                        extraProjects.forEach(project => {
+                            project.classList.add('d-none');
+                            project.classList.remove('active'); // reset scroll reveal class
+                        });
+                        showMoreBtn.setAttribute('aria-expanded', 'false');
+                        showMoreBtn.innerHTML = '<i class="bi bi-plus-circle me-2"></i>View All Projects';
+                        
+                        // Scroll back smoothly to projects section
+                        const projectsSection = document.getElementById('projects');
+                        if (projectsSection) {
+                            projectsSection.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    } else {
+                        // Expand
+                        extraProjects.forEach(project => {
+                            project.classList.remove('d-none');
+                            // Trigger intersection observer reveal
+                            setTimeout(() => {
+                                project.classList.add('active');
+                            }, 50);
+                        });
+                        showMoreBtn.setAttribute('aria-expanded', 'true');
+                        showMoreBtn.innerHTML = '<i class="bi bi-dash-circle me-2"></i>Show Less';
+                    }
                 });
             }
         });
