@@ -863,18 +863,18 @@
                         <div class="col-lg-8 col-xl-6">
                             <form id="contactForm" action="https://formspree.io/f/mrejlvjk" method="POST">
                                 <div class="form-floating mb-3"><input class="form-control" id="name" name="name"
-                                        type="text" placeholder="Name" required /><label for="name">Full name</label>
+                                        type="text" placeholder="Name" /><label for="name">Full name</label>
                                 </div>
                                 <div class="form-floating mb-3"><input class="form-control" id="email" name="email"
-                                        type="email" placeholder="Email" required /><label for="email">Email
+                                        type="email" placeholder="Email" /><label for="email">Email
                                         address</label></div>
                                 <div class="form-floating mb-3"><input class="form-control" id="whatsapp"
-                                        name="whatsapp" type="tel" placeholder="WhatsApp Number" required /><label
+                                        name="whatsapp" type="tel" placeholder="WhatsApp Number" /><label
                                         for="whatsapp">WhatsApp Number</label>
                                 </div>
                                 <div class="form-floating mb-3"><textarea class="form-control" id="message"
-                                        name="message" placeholder="Message" style="height: 10rem"
-                                        required></textarea><label for="message">Message</label></div>
+                                        name="message" placeholder="Message" style="height: 10rem"></textarea><label
+                                        for="message">Message</label></div>
                                 <div class="d-grid"><button class="btn btn-primary btn-lg" id="submitButton"
                                         type="submit">Submit Message</button></div>
                             </form>
@@ -892,6 +892,83 @@
     <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
 
     <script>
+        // Robust Form Validation (Bypass-Proof)
+        (function () {
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                const nameInput = document.getElementById('name');
+                const emailInput = document.getElementById('email');
+                const whatsappInput = document.getElementById('whatsapp');
+                const messageInput = document.getElementById('message');
+
+                // Clear invalid style instantly when the user types
+                [nameInput, emailInput, whatsappInput, messageInput].forEach(input => {
+                    input.addEventListener('input', function () {
+                        input.classList.remove('is-invalid');
+                    });
+                });
+
+                contactForm.addEventListener('submit', function (e) {
+                    let isValid = true;
+                    let errors = [];
+
+                    // Reset previous custom invalid styles
+                    [nameInput, emailInput, whatsappInput, messageInput].forEach(input => {
+                        input.classList.remove('is-invalid');
+                    });
+
+                    // 1. Full Name Validation
+                    const nameVal = nameInput.value.trim();
+                    if (nameVal.length < 3) {
+                        isValid = false;
+                        nameInput.classList.add('is-invalid');
+                        errors.push('Full name must be at least 3 characters long.');
+                    }
+
+                    // 2. Email Validation
+                    const emailVal = emailInput.value.trim();
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(emailVal)) {
+                        isValid = false;
+                        emailInput.classList.add('is-invalid');
+                        errors.push('Please enter a valid email address.');
+                    }
+
+                    // 3. WhatsApp Validation
+                    const whatsappVal = whatsappInput.value.trim();
+                    // Validates numbers, plus sign, spaces, dashes, or parentheses; min 7 digits
+                    const phoneRegex = /^[0-9+\s\-()]{7,20}$/;
+                    if (!phoneRegex.test(whatsappVal)) {
+                        isValid = false;
+                        whatsappInput.classList.add('is-invalid');
+                        errors.push('Please enter a valid WhatsApp or contact number.');
+                    }
+
+                    // 4. Message Validation
+                    const messageVal = messageInput.value.trim();
+                    if (messageVal.length < 5) {
+                        isValid = false;
+                        messageInput.classList.add('is-invalid');
+                        errors.push('Message must be at least 5 characters long to avoid spam.');
+                    }
+
+                    if (!isValid) {
+                        e.preventDefault();
+                        e.stopImmediatePropagation(); // Stops Formspree and all other handlers
+
+                        Swal.fire({
+                            title: 'Validation Error! ⚠️',
+                            html: `<div style="text-align: left; font-size: 15px; margin-top: 10px;">
+                                    ${errors.map(err => `<p style="margin-bottom: 8px; color: #dc3545;"><i class="bi bi-x-circle-fill me-2"></i>${err}</p>`).join('')}
+                                   </div>`,
+                            icon: 'error',
+                            confirmButtonColor: '#1e30f3'
+                        });
+                    }
+                });
+            }
+        })();
+
         // Formspree Initialization
         window.formspree = window.formspree || function () { (formspree.q = formspree.q || []).push(arguments); };
         formspree('initForm', {
